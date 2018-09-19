@@ -2,11 +2,17 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Howdy</title>
+<link href="all.css" rel="stylesheet">
+<title>Welcome friend</title>
+<script>
+// Load app.js script after document has rendered.
+  var script = document.createElement('script');
+  script.src = 'fireworks.js';
+  script.type = 'text/javascript';
+  document.getElementsByTagName('head')[0].appendChild(script);
+</script>
 </head>
-
 <body>
-    "The world is an ever present mystery" <br>
-    -someone, probably
+    <canvas id="canvas">Your browser does not support 'canvas' elements.
 </body>
 </html>
