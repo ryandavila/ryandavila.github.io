@@ -17,7 +17,7 @@ const PARTICLE_BRIGHTNESS_MIN = 50;
 // Maximum particle brightness.
 const PARTICLE_BRIGHTNESS_MAX = 80;
 // Base particle count per firework.
-const PARTICLE_COUNT = 80;
+const PARTICLE_COUNT = 160;
 // Minimum particle decay rate.
 const PARTICLE_DECAY_MIN = 0.015;
 // Maximum particle decay rate.
@@ -41,7 +41,7 @@ const PARTICLE_TRAIL_LENGTH = 5;
 
 // Alpha level that canvas cleanup iteration removes existing trails.
 // Lower value increases trail duration.
-const CANVAS_CLEANUP_ALPHA = 0.3;
+const CANVAS_CLEANUP_ALPHA = 0.15;
 // Hue change per loop, used to rotate through different firework colors.
 const HUE_STEP_INCREASE = 0.5;
 
@@ -52,7 +52,7 @@ const TICKS_PER_FIREWORK_AUTOMATED_MIN = 20;
 // Maximum number of ticks between each automatic firework launch.
 const TICKS_PER_FIREWORK_AUTOMATED_MAX = 80;
 
-// End of constants ==
+// End of constants
 
 // Variable declarations
 let canvas = document.getElementById('canvas');
@@ -74,11 +74,10 @@ let ticksSinceFirework = 0;
 // end of variable delcarations
 
 window.requestAnimFrame = (() => {
-  return 	window.requestAnimationFrame ||
-  window.webkitRequestAnimationFrame ||
-  window.mozRequestAnimationFrame ||
-  function(callback) {
-    window.setTimeout(callback, 1000 / 60);
+  return window.requestAnimationFrame || window.webkitRequestAnimationFrame ||
+        window.mozRequestAnimationFrame ||
+        function(callback) {
+            window.setTimeout(callback, 1000 / 60);
     };
 })();
 
@@ -144,7 +143,7 @@ Firework.prototype.update = function(index) {
 
     if (FIREWORK_TARGET_INDICATOR_ENABLED) {
         if (this.targetRadius < 8) {
-            this.targetRadius += .3;
+            this.targetRadius += 0.3;
         } else {
             this.targetRadius = 1;
         }
@@ -158,7 +157,7 @@ Firework.prototype.update = function(index) {
     this.distanceTraveled = calculateDistance(this.startX, this.startY, this.x + xSpeed, this.y + ySpeed);
 
     //checks if the final point has been reached, blowing up if so
-    if (this.distanceTraveled >- this.distanceToEnd) {
+    if (this.distanceTraveled >= this.distanceToEnd) {
         fireworks.splice(index, 1);
         createParticles(this.endX, this.endY);
     } else {
@@ -167,7 +166,7 @@ Firework.prototype.update = function(index) {
     }
 }
 
-//Draws a firework, using CanvasRenderingContext2D mmethods to make strokes
+//Draws a firework, using CanvasRenderingContext2D methods to make strokes
 Firework.prototype.draw = function() {
     context.beginPath();
     //Proceeds to get the coordinates for the oldest trail position
@@ -268,6 +267,7 @@ function launchAutomatedFirework() {
             let endY = random(0, canvas.height / 2);
 
             fireworks.push(new Firework(startX, startY, endX, endY));
+            console.log("new auto firework");
             ticksSinceFireworkAutomated = 0;
         }
     } else {
