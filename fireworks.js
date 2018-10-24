@@ -7,7 +7,7 @@ const FIREWORK_BRIGHTNESS_MIN = 50;
 // Maximum firework brightness.
 const FIREWORK_BRIGHTNESS_MAX = 70;
 // Base speed of fireworks.
-const FIREWORK_SPEED = 5;
+const FIREWORK_SPEED = 4;
 // Base length of firework trails.
 const FIREWORK_TRAIL_LENGTH = 3;
 // Determine if target position indicator is enabled.
@@ -48,9 +48,9 @@ const HUE_STEP_INCREASE = 0.5;
 // Minimum number of ticks per manual firework launch.
 const TICKS_PER_FIREWORK_MIN = 5;
 // Minimum number of ticks between each automatic firework launch.
-const TICKS_PER_FIREWORK_AUTOMATED_MIN = 20;
+const TICKS_PER_FIREWORK_AUTOMATED_MIN = 60;
 // Maximum number of ticks between each automatic firework launch.
-const TICKS_PER_FIREWORK_AUTOMATED_MAX = 80;
+const TICKS_PER_FIREWORK_AUTOMATED_MAX = 120;
 
 // End of constants
 
@@ -259,7 +259,7 @@ function createParticles(x, y) {
 
 //function to launch fireworks automatically
 function launchAutomatedFirework() {
-    if (ticksSinceFirework >= random(TICKS_PER_FIREWORK_AUTOMATED_MIN, TICKS_PER_FIREWORK_AUTOMATED_MAX)) {
+    if (ticksSinceFireworkAutomated >= random(TICKS_PER_FIREWORK_AUTOMATED_MIN, TICKS_PER_FIREWORK_AUTOMATED_MAX)) {
         if (!isMouseDown) {
             let startX = canvas.width / 2;
             let startY = canvas.height;
@@ -267,11 +267,10 @@ function launchAutomatedFirework() {
             let endY = random(0, canvas.height / 2);
 
             fireworks.push(new Firework(startX, startY, endX, endY));
-            console.log("new auto firework");
             ticksSinceFireworkAutomated = 0;
         }
     } else {
-        ticksSinceFireworkAutomated--;
+        ticksSinceFireworkAutomated++;
     }
 }
 
