@@ -1,3 +1,4 @@
+/* CSS for fireworks display
 body {
     background: #000;
     margin: 0;
@@ -5,4 +6,41 @@ body {
 }
 canvas {
     display: block;
+} */
+
+body {
+	background-color: #000
+}
+#console {
+	font-family: courier, monospace;
+	color: #fff;
+	width: 750px;
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: 100px;
+	font-size: 14px;
+}
+a {
+	color: #0bc;
+	text-decoration: none;
+}
+#a {
+	color: #0f0;
+}
+#c {
+	color: #0bc;
+}
+#b {
+	color: #ff0096;
+}
+#k {
+    	animation: change 1s;
+}
+#op{
+    	color: #888888
+}
+@keyframes change {
+    	0%  { color:  #0f0; }
+    	50% { color:  #0f0; }
+    	99% { color: black; }
 }
