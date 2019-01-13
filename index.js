@@ -14,7 +14,7 @@ let Typer = {
         }, 500);
         $.get(Typer.file, function(data) {
             Typer.text = data;
-            Typer.text = Typer.text.slice(0, Tyler.text.length - 1); //this line is redundant
+            Typer.text = Typer.text.slice(0, Typer.text.length - 1); //this line is redundant
         });
     },
     content: function() {
